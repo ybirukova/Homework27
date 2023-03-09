@@ -1,4 +1,4 @@
-package com.example.homework27
+package com.example.homework27.data.network
 
 import com.example.homework27.data.models.BreedResponse
 import com.example.homework27.data.models.CatResponse

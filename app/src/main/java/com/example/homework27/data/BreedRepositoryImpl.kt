@@ -1,7 +1,7 @@
 package com.example.homework27.data
 
-import com.example.homework27.Service
 import com.example.homework27.data.mappers.BreedMapper
+import com.example.homework27.data.network.CatService
 import com.example.homework27.domain.models.BreedData
 import com.example.homework27.domain.repository.BreedRepository
 import kotlinx.coroutines.Dispatchers
@@ -10,14 +10,14 @@ import javax.inject.Inject
 
 class BreedRepositoryImpl @Inject constructor(
     private val mapperBreed: BreedMapper,
-    private val service: Service
+    private val service: CatService
 ) :
     BreedRepository {
 
     override suspend fun getListOfBreeds(): List<BreedData> {
 
         return withContext(Dispatchers.IO) {
-            service.getService().getListOfBreeds().execute().body()?.map { mapperBreed(it) }
+            service.getListOfBreeds().execute().body()?.map { mapperBreed(it) }
                 ?: throw Exception()
         }
     }
