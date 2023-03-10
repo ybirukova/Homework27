@@ -1,20 +1,19 @@
-package com.example.homework27.di
+package com.example.homework27.di.modules
 
 import com.example.homework27.data.network.CatService
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     @Provides
+    @Singleton
     fun getRetrofit(): Retrofit {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -32,6 +31,7 @@ class NetworkModule {
     }
 
     @Provides
+    @Singleton
     fun getService(retrofit: Retrofit): CatService {
         return retrofit.create(CatService::class.java)
     }
