@@ -8,14 +8,11 @@ import com.example.homework27.data.BreedRepositoryImpl
 import com.example.homework27.data.CatRepositoryImpl
 import com.example.homework27.domain.models.BreedData
 import com.example.homework27.domain.models.CatData
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class CatViewModel @Inject constructor(
-    private val catRepository: CatRepositoryImpl,
-    private val breedRepository: BreedRepositoryImpl
+    private val catRepository: CatRepositoryImpl, private val breedRepository: BreedRepositoryImpl
 ) : ViewModel() {
 
     private val _catLiveData = MutableLiveData<List<CatData>>()

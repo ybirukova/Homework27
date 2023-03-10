@@ -1,7 +1,11 @@
 package com.example.homework27
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.example.homework27.di.ApplicationComponent
+import com.example.homework27.di.DaggerApplicationComponent
 
-@HiltAndroidApp
-class CatApp : Application()
+class CatApp : Application() {
+    val appComponent: ApplicationComponent by lazy {
+        DaggerApplicationComponent.factory().create(applicationContext)
+    }
+}
